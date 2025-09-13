@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Installation script for X - LLM Terminal Helper
-echo "Installing X - LLM Terminal Helper..."
+# Installation script for cmd-genie - Wish Terminal Helper
+echo "Installing cmd-genie - Your magical command assistant..."
 
 # Get the current directory
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
@@ -11,13 +11,13 @@ echo "Installing Python dependencies..."
 pip3 install -r "$SCRIPT_DIR/requirements.txt"
 
 # Add to bashrc if not already there
-if ! grep -q "# X - LLM Terminal Helper" ~/.bashrc; then
+if ! grep -q "# cmd-genie - Wish Terminal Helper" ~/.bashrc; then
     echo "" >> ~/.bashrc
-    echo "# X - LLM Terminal Helper" >> ~/.bashrc
+    echo "# cmd-genie - Wish Terminal Helper" >> ~/.bashrc
     echo "source $SCRIPT_DIR/x_function.sh" >> ~/.bashrc
-    echo "✓ Added X function to ~/.bashrc"
+    echo "✓ Added wish function to ~/.bashrc"
 else
-    echo "✓ X function already in ~/.bashrc"
+    echo "✓ wish function already in ~/.bashrc"
 fi
 
 echo ""
@@ -28,8 +28,8 @@ echo "  export GEMINI_API_KEY='your-api-key-here'"
 echo "  # Add this to your ~/.bashrc to make it permanent"
 echo ""
 echo "Usage:"
-echo "  x 'list all files'     # Command appears ready to execute"
-echo "  x 'copy a file'        # Just press Enter to run"
-echo "  x 'show processes'     # Simple and fast"
+echo "  wish 'list all files'     # Your wish appears ready to redeem"
+echo "  wish 'copy a file'        # Press ↑ then Enter to execute"
+echo "  wish 'show processes'     # Simple and magical"
 echo ""
 echo "Restart your terminal or run: source ~/.bashrc"
