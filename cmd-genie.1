@@ -1,0 +1,221 @@
+.TH CMD-GENIE 1 "September 2025" "cmd-genie 1.0" "User Commands"
+.SH NAME
+cmd-genie, wish \- magical Linux command assistant powered by AI
+.SH SYNOPSIS
+.B wish
+.I "natural language request"
+.br
+.B python3 x_backend.py
+.I "query"
+.SH DESCRIPTION
+.B cmd-genie
+is an elegant Linux command assistant that transforms natural language requests into precise Linux commands using Google Gemini AI. Simply make a wish in plain English, and the genie will conjure the perfect command for you.
+
+The main interface is the
+.B wish
+command, which provides:
+.IP \(bu 2
+Structured, educational explanations with color-coded output
+.IP \(bu 2
+Purpose, Flags, and Tips for each command
+.IP \(bu 2
+Interactive command preview with "Press ↑ to reveal"
+.IP \(bu 2
+Automatic integration with bash history
+.IP \(bu 2
+Safety checks to prevent dangerous operations
+
+.SH EXAMPLES
+.TP
+.B wish "show running processes"
+Generates and explains the \fBps aux\fR command with detailed flag explanations.
+
+.TP
+.B wish "find all Python files"
+Creates a \fBfind\fR command to locate files with .py extension.
+
+.TP
+.B wish "check disk space"
+Provides the \fBdf -h\fR command with human-readable output explanation.
+
+.TP
+.B wish "what is SSH?"
+Demonstrates SSH usage with practical connection examples.
+
+.TP
+.B wish "compress this directory"
+Shows how to create compressed archives with appropriate flags.
+
+.SH OUTPUT FORMAT
+Each wish generates a structured response:
+
+.B Purpose:
+A concise explanation of what the command accomplishes
+
+.B Flags:
+Key command-line options and their meanings
+
+.B Tip:
+Practical usage advice or related commands
+
+The output uses color coding:
+.IP \(bu 2
+.B Purpose
+appears in bright cyan
+.IP \(bu 2
+.B Flags
+appear in bright yellow  
+.IP \(bu 2
+.B Tips
+appear in bright green
+
+.SH CONFIGURATION
+The genie's behavior can be customized via \fBconfig.py\fR:
+
+.TP
+.B AI Settings
+Model selection, temperature controls, token limits
+
+.TP
+.B Display Options
+Colors, formatting, message text
+
+.TP
+.B Safety Features
+Dangerous command patterns, validation rules
+
+.TP
+.B Prompts
+Customizable AI prompts for commands and descriptions
+
+.SH SETUP
+.TP
+1. Install dependencies:
+.nf
+pip install google-genai rich
+.fi
+
+.TP
+2. Get a Gemini API key from Google AI Studio:
+.nf
+https://makersuite.google.com/app/apikey
+.fi
+
+.TP
+3. Set your API key:
+.nf
+export GEMINI_API_KEY='your-api-key-here'
+echo 'export GEMINI_API_KEY="your-key"' >> ~/.bashrc
+.fi
+
+.TP
+4. Source the genie functions:
+.nf
+source x_function.sh
+.fi
+
+.SH FILES
+.TP
+.B x_backend.py
+Core AI processing engine with dual-temperature approach
+
+.TP
+.B x_function.sh
+Bash function providing the \fBwish\fR command interface
+
+.TP
+.B config.py
+Centralized configuration for colors, prompts, and behavior
+
+.TP
+.B install.sh
+Automated setup script for easy installation
+
+.TP
+.B /tmp/wish_cmd
+Temporary file storing the last generated command
+
+.SH ENVIRONMENT VARIABLES
+.TP
+.B GEMINI_API_KEY
+Required. Your Google Gemini AI API key for command generation.
+
+.SH FEATURES
+.TP
+.B Dual-Temperature AI
+Commands generated at temperature 0.0 for accuracy, descriptions at 0.3 for educational clarity.
+
+.TP
+.B Educational Focus
+Explanations designed to help users learn and remember Linux commands.
+
+.TP
+.B Safety Checks
+Blocks potentially dangerous operations like \fBrm -rf /\fR and fork bombs.
+
+.TP
+.B Smart Query Detection
+Always provides actionable commands, even for "what is X?" questions.
+
+.TP
+.B Elegant Theming
+Sophisticated genie personality with mystical language that remains professional.
+
+.SH SUPPORTED QUERIES
+.TP
+.B File Operations
+Finding, searching, copying, moving, compressing files and directories
+
+.TP
+.B System Monitoring
+Process management, resource usage, network connections
+
+.TP
+.B Text Processing
+Searching, filtering, sorting, and manipulating text data
+
+.TP
+.B Development Tasks
+Git operations, package management, code analysis
+
+.TP
+.B Network Operations  
+Connectivity testing, downloads, service management
+
+.TP
+.B Learning Queries
+"What is X?" and "explain Y" provide practical demonstrations
+
+.SH EXIT STATUS
+.TP
+.B 0
+Success - command generated and displayed
+
+.TP
+.B 1
+Error - missing API key, network issues, or invalid request
+
+.SH BUGS
+Report bugs at: https://github.com/GaragaKarthikeya/cmd-genie/issues
+
+.SH AUTHOR
+Written for the Linux community with ❤️
+
+.SH COPYRIGHT
+MIT License - feel free to modify and distribute
+
+.SH SEE ALSO
+.BR bash (1),
+.BR man (1),
+.BR find (1),
+.BR grep (1),
+.BR ps (1)
+
+The complete documentation and source code are available at:
+.br
+https://github.com/GaragaKarthikeya/cmd-genie
+
+.SH NOTES
+Your wish is my command! 🧞‍♂️
+
+For best results, describe what you want to accomplish rather than trying to guess command syntax. The genie understands natural language and will provide the most appropriate Linux command for your task.

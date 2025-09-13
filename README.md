@@ -46,6 +46,14 @@ Press ↑ to reveal
    ```
 4. **Start using**: Open new terminal and try `wish "list files"`
 
+## 📖 Documentation
+
+Access the complete manual anytime:
+```bash
+man cmd-genie    # Full documentation
+man wish         # Same manual, shorter command
+```
+
 ## 📚 Examples
 
 ```bash
