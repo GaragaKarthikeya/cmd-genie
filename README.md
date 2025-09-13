@@ -1,6 +1,6 @@
-# 🤖 X - LLM Terminal Helper
+# �‍♂️ cmd-genie
 
-**AI-powered Linux command assistant that speaks your language**
+**Your magical Linux command assistant - make a wish, get the perfect command**
 
 Transform natural language into Linux commands instantly. No more googling, no more man pages - just ask and execute.
 
@@ -29,10 +29,10 @@ $ x "find files named config"
 ## 🚀 Installation
 
 1. **Get a Gemini API key** from [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. **Install X**:
+2. **Install cmd-genie**:
    ```bash
-   git clone https://github.com/yourusername/llm_cmd_helper
-   cd llm_cmd_helper
+   git clone https://github.com/yourusername/cmd-genie
+   cd cmd-genie
    ./install.sh
    ```
 3. **Set your API key**:
@@ -85,11 +85,11 @@ x "show system information"                # → uname -a
 ## 📁 Project Structure  
 
 ```
-llm_cmd_helper/
-├── 🐍 x_backend.py      # AI engine (Gemini API integration)
-├── 🔧 x_function.sh     # Bash magic (readline integration) 
-├── ⚡ install.sh        # One-command setup
-├── 📦 requirements.txt  # Dependencies (just google-genai)
+cmd-genie/
+├── 🧞‍♂️ x_backend.py      # The genie's brain (Gemini API integration)
+├── 🔧 x_function.sh     # Magic lamp (bash integration) 
+├── ⚡ install.sh        # Summon the genie (one-command setup)
+├── 📦 requirements.txt  # Genie's requirements (just google-genai)
 └── 📖 README.md         # You are here
 ```
 
@@ -118,4 +118,4 @@ MIT License - feel free to modify and distribute!
 
 **Made with ❤️ for the Linux community**
 
-*Simple, fast, reliable.*
+*Your wish is my command* 🧞‍♂️

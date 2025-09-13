@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """
-X Backend - LLM Terminal Helper
-Converts natural language queries to Linux commands using Google Gemini API
+cmd-genie Backend - Your Magical Linux Command Assistant 🧞‍♂️
+Transforms natural language wishes into perfect Linux commands using Google Gemini AI
 
-Usage: python3 x_backend.py "your query here"
+Usage: python3 x_backend.py "your wish here"
 Returns: explanation\ncommand
+
+Make a wish, get the perfect command!
 """
 
 import sys

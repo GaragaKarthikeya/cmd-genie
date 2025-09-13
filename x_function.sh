@@ -1,6 +1,6 @@
 #!/bin/bash
-# X - LLM Terminal Helper Bash Function
-# Natural language to Linux commands with AI assistance
+# 🧞‍♂️ cmd-genie - Your Magical Linux Command Assistant
+# Rub the lamp (type 'x') and make your command wishes come true!
 
 # Colors for output
 readonly X_GREEN='\033[0;32m'
@@ -20,7 +20,7 @@ x() {
     fi
     
     # Show loading indicator
-    echo -e "${X_BLUE}🤖 Thinking...${X_RESET}"
+    echo -e "${X_BLUE}�‍♂️ Granting your wish...${X_RESET}"
     
     # Call Python backend
     local result=$(python3 "/home/obsidian-core/llm_cmd_helper/x_backend.py" "$@" 2>/dev/null)
@@ -56,4 +56,4 @@ x() {
 # Export the function
 export -f x
 
-echo "✅ X function loaded! Try: x 'list files'"
+echo "🧞‍♂️ cmd-genie is ready! Make a wish: x 'list files'"
