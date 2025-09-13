@@ -23,7 +23,7 @@ x() {
     echo -e "${X_BLUE}�‍♂️ Granting your wish...${X_RESET}"
     
     # Call Python backend
-    local result=$(python3 "/home/obsidian-core/llm_cmd_helper/x_backend.py" "$@" 2>/dev/null)
+    local result=$(python3 "/home/obsidian-core/cmd-genie/x_backend.py" "$@" 2>/dev/null)
     
     if [ $? -ne 0 ] || [ -z "$result" ]; then
         echo -e "${X_RED}❌ Error: Could not get command${X_RESET}"
