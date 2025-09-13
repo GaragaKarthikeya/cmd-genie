@@ -31,9 +31,9 @@ wish() {
         return 1
     fi
     
-    # Parse result (first line = explanation, second line = command)
-    local explanation=$(echo "$result" | head -n1)
+    # Parse result (last line = command, everything else = explanation)
     local command=$(echo "$result" | tail -n1)
+    local explanation=$(echo "$result" | head -n -1)
     
     # Clear loading line
     printf '\033[1A\033[2K'
