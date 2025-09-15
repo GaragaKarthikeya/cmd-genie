@@ -1,33 +1,33 @@
 # 🧞‍♂️ cmd-genie
 
-**Your elegant Linux command assistant - make a wish, receive mystical wisdom**
-
-Transform natural language into Linux commands with sophisticated, genie-like descriptions. No more googling, no more man pages - just make a wish and discover the perfect command.️ cmd-genie
-
-**Your magical Linux command assistant - make a wish, get the perfect command**
+**Your smart Linux command assistant - make a wish, get the perfect command**
 
 Transform natural language into Linux commands instantly. No more googling, no more man pages - just make a wish and execute.
 
 ```bash
 $ wish "show running processes"
 Conjuring...
-Hark! With 'ps aux', I conjure forth a spectral tapestry, wherein the ethereal forms of every running process are manifest
+**Purpose:** Shows running processes with details
+**Flags:** `a` (all users), `u` (user format)
+**Tip:** Pipe to grep for filtering
 Press ↑ to reveal
 
-$ wish "what is the time"
+$ wish "find all python files"
 Conjuring...
-The ethereal chronometer is summoned, unveiling the celestial tapestry of time woven upon the loom of the universe
+**Purpose:** Finds files with a specific name
+**Flags:** `.` (current directory), `-name` (filename)
+**Tip:** Use wildcards like '*.py' in quotes
 Press ↑ to reveal
 ```
 
 ## ✨ Features
 
-- **🎯 Smart**: Dual-temperature AI system for precise commands and creative descriptions
-- **🧙‍♂️ Mystical**: Elegant genie personality with poetic command explanations
-- **⚡ Fast**: Powered by Google Gemini 2.0 Flash for instant responses  
-- **🛡️ Safe**: Always shows you the command before execution
-- **🎨 Elegant**: Clean, sophisticated UI with mystical loading states
-- **📚 Intuitive**: Natural language input with no command syntax to learn
+- **🎯 Smart**: Dual-temperature AI for precise commands and clear, educational descriptions.
+- **📚 Educational**: Structured output (Purpose, Flags, Tip) to help you learn commands.
+- **⚡ Fast**: Powered by Google Gemini 2.5 Flash Lite for instant responses.
+- **🛡️ Safe**: Blocks dangerous commands (e.g., `rm -rf /`) before they are shown.
+- **🎨 Customizable**: Change colors, prompts, and features in `config.py`.
+- **✅ Health Checks**: Automatically verifies your setup on startup.
 
 ## 🚀 Installation
 
@@ -90,15 +90,16 @@ The `wish` command is a Bash function that orchestrates the following steps:
 1.  **Input**: You type `wish "your request"` in your terminal.
 2.  **Backend Call**: The `wish` function calls the Python script `x_backend.py`, passing your request as an argument.
 3.  **Dual AI Generation**: The backend sends two parallel requests to the Google Gemini API:
-    *   **Command Generation**: A request with a `temperature` of `0.0` asks the AI for a precise, executable Linux command that matches your request.
-    *   **Description Generation**: A second request with a higher `temperature` asks the AI to generate a creative, mystical description of what the command does.
-4.  **Parsing and Display**: The Python script returns the description and the command to the Bash function. The `wish` function then:
-    *   Displays the mystical explanation.
+    *   **Command Generation**: A request with a `temperature` of `0.0` asks for a precise, executable Linux command.
+    *   **Description Generation**: A second request with a `temperature` of `0.3` asks for a structured, educational explanation of the command.
+4.  **Parsing and Display**: The Python script returns a structured description and the command to the Bash function. The `wish` function then:
+    *   Formats the description with colors (e.g., for **Purpose**, **Flags**, and **Tip**).
+    *   Displays the formatted explanation.
     *   Prints `Press ↑ to reveal` to the console.
-    *   Uses the `history -s` command to inject the generated Linux command into your shell's history.
+    *   Uses `history -s` to inject the generated command into your shell's history.
 5.  **Execution**: When you press the **Up Arrow** key, the command appears in your terminal, ready to be edited or executed by pressing **Enter**.
 
-This dual-temperature approach ensures that the commands are accurate and safe, while the descriptions are engaging and educational.
+This dual-temperature approach ensures that commands are accurate and safe, while descriptions are educational and easy to understand.
 
 ## 💻 Requirements
 
@@ -120,13 +121,13 @@ cmd-genie/
 └── README.md           # This file.
 ```
 
-## 🎭 The Genie Experience
+## 📚 Educational Design
 
-cmd-genie is designed to be more than just a utility; it's an experience.
+cmd-genie is designed to be more than just a utility; it's a learning tool.
 
--   **Dual-Temperature AI**: Commands are generated at `temperature = 0.0` for maximum accuracy, while descriptions are generated at `temperature = 0.8` for creativity and flair.
--   **Elegant Loading**: The "Conjuring..." message and the smooth reveal mechanism provide a refined user experience.
--   **Poetic Descriptions**: The explanations are designed to be sophisticated and informative, turning a simple command lookup into a moment of discovery.
+-   **Dual-Temperature AI**: Commands are generated at `temperature = 0.0` for accuracy, while descriptions are generated at `temperature = 0.3` for clear, helpful explanations.
+-   **Structured Learning**: The "Purpose, Flags, Tip" format is designed to teach you not just *what* a command does, but *how* it works.
+-   **Clean and Clear**: The output is color-coded and formatted for readability, making it easy to quickly understand the command's function.
 
 ## 🔧 Development
 
@@ -155,10 +156,14 @@ If you want to contribute to or modify `cmd-genie`, here are some tips to get yo
 
 You can customize the behavior of `cmd-genie` by editing the `config.py` file. This file allows you to change:
 
--   **AI Settings**: Modify the `AI_MODEL`, `TEMPERATURE`, and `MAX_TOKENS` to fine-tune the AI's responses.
+-   **AI Settings**: Modify the `AI_MODEL` (`gemini-2.5-flash-lite`), `TEMPERATURE` (for both commands and descriptions), and `MAX_TOKENS`.
 -   **Colors**: Adjust the ANSI color codes in the `Colors` class to match your terminal's theme.
 -   **Prompts**: Change the `COMMAND_PROMPT_TEMPLATE` and `DESCRIPTION_PROMPT_TEMPLATE` to alter the AI's personality or output format.
--   **Feature Flags**: Enable or disable features like color output, safety checks, and more.
+-   **Feature Flags**: Toggle features on or off:
+    - `ENABLE_COLORS`: Enable or disable colored output.
+    - `ENABLE_MARKDOWN`: Control the structured "Purpose/Flags/Tip" formatting.
+    - `ENABLE_SAFETY_CHECKS`: Toggle the dangerous command blocking feature.
+    - `ENABLE_COMMAND_HISTORY`: Control whether commands are saved to your shell history.
 
 ## 🤝 Contributing
 
