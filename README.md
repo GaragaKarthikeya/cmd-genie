@@ -85,53 +85,80 @@ wish "format date as ISO"                     # → date --iso-8601
 
 ## ⚙️ How It Works
 
-1. **Wish**: `wish "what you want to do"`
-2. **AI conjures**: Dual-temperature system generates precise command (temp 0.0) and mystical description (temp 0.8)
-3. **Mystical preview**: Elegant loading state followed by poetic command explanation
-4. **Execute**: Press ↑ (up arrow) to reveal the actual command, then Enter to run
-5. **Learn**: Natural language interface builds intuitive understanding over time
+The `wish` command is a Bash function that orchestrates the following steps:
+
+1.  **Input**: You type `wish "your request"` in your terminal.
+2.  **Backend Call**: The `wish` function calls the Python script `x_backend.py`, passing your request as an argument.
+3.  **Dual AI Generation**: The backend sends two parallel requests to the Google Gemini API:
+    *   **Command Generation**: A request with a `temperature` of `0.0` asks the AI for a precise, executable Linux command that matches your request.
+    *   **Description Generation**: A second request with a higher `temperature` asks the AI to generate a creative, mystical description of what the command does.
+4.  **Parsing and Display**: The Python script returns the description and the command to the Bash function. The `wish` function then:
+    *   Displays the mystical explanation.
+    *   Prints `Press ↑ to reveal` to the console.
+    *   Uses the `history -s` command to inject the generated Linux command into your shell's history.
+5.  **Execution**: When you press the **Up Arrow** key, the command appears in your terminal, ready to be edited or executed by pressing **Enter**.
+
+This dual-temperature approach ensures that the commands are accurate and safe, while the descriptions are engaging and educational.
 
 ## 💻 Requirements
 
-- **Python 3.9+** - Modern Python installation
-- **Bash shell** - Standard on most Linux systems  
-- **Google Gemini API key** - Free from [Google AI Studio](https://makersuite.google.com/app/apikey)
-- **Internet connection** - For dual-temperature AI processing
-- **Terminal with color support** - For elegant mystical theming
+-   **Python 3.9+**: Required to run the backend script.
+-   **Bash Shell**: The `wish` function is a Bash script.
+-   **Google Gemini API Key**: Necessary for AI-powered command generation. You can get a free key from [Google AI Studio](https://makersuite.google.com/app/apikey).
+-   **Internet Connection**: Required to communicate with the Gemini API.
+-   **Color-Enabled Terminal**: Recommended for the best visual experience.
 
-## 📁 Project Structure  
+## 📁 Project Structure
 
 ```
 cmd-genie/
-├── 🧞‍♂️ x_backend.py      # The genie's brain (dual-temperature AI processing)
-├── 🔧 x_function.sh     # Magic lamp (elegant bash integration) 
-├── ⚡ install.sh        # Summon the genie (one-command setup)
-├── 📦 requirements.txt  # Genie's requirements (just google-genai)
-└── 📖 README.md         # You are here
+├── x_backend.py        # Main Python backend for AI logic.
+├── x_function.sh       # Bash script defining the 'wish' function.
+├── install.sh          # Installation script for setup.
+├── config.py           # Configuration for AI, prompts, and colors.
+├── requirements.txt    # Python dependencies.
+└── README.md           # This file.
 ```
 
 ## 🎭 The Genie Experience
 
-cmd-genie combines technical precision with mystical elegance:
+cmd-genie is designed to be more than just a utility; it's an experience.
 
-- **Dual-Temperature AI**: Commands generated at temperature 0.0 for accuracy, descriptions at 0.8 for creativity
-- **Elegant Loading**: "Conjuring..." state with smooth reveal mechanism  
-- **Poetic Descriptions**: Sophisticated, genie-like explanations that are informative yet mystical
-- **Clean UX**: No flashy animations or gimmicky elements - just refined, purposeful design
-- **Robust Parsing**: Handles various AI response formats with comprehensive regex patterns
+-   **Dual-Temperature AI**: Commands are generated at `temperature = 0.0` for maximum accuracy, while descriptions are generated at `temperature = 0.8` for creativity and flair.
+-   **Elegant Loading**: The "Conjuring..." message and the smooth reveal mechanism provide a refined user experience.
+-   **Poetic Descriptions**: The explanations are designed to be sophisticated and informative, turning a simple command lookup into a moment of discovery.
 
 ## 🔧 Development
 
-```bash
-# Test the backend directly
-python3 x_backend.py "your query"
+If you want to contribute to or modify `cmd-genie`, here are some tips to get you started:
 
-# Reload function after changes
-source x_function.sh
+1.  **Clone the Repository**:
+    ```bash
+    git clone https://github.com/yourusername/cmd-genie
+    cd cmd-genie
+    ```
+2.  **Set Up Your Environment**:
+    *   Run `./install.sh` to install dependencies and set up the `wish` command.
+    *   Make sure to set your `GEMINI_API_KEY` as described in the **Installation** section.
+3.  **Making Changes**:
+    *   **Backend**: To test changes in the Python backend, you can run it directly:
+        ```bash
+        python3 x_backend.py "your query"
+        ```
+    *   **Frontend**: If you modify `x_function.sh`, you'll need to reload it in your current terminal session:
+        ```bash
+        source x_function.sh
+        ```
+    *   You can check if the function is loaded correctly with `type wish`.
 
-# Check function is loaded
-type wish
-```
+## ⚙️ Configuration
+
+You can customize the behavior of `cmd-genie` by editing the `config.py` file. This file allows you to change:
+
+-   **AI Settings**: Modify the `AI_MODEL`, `TEMPERATURE`, and `MAX_TOKENS` to fine-tune the AI's responses.
+-   **Colors**: Adjust the ANSI color codes in the `Colors` class to match your terminal's theme.
+-   **Prompts**: Change the `COMMAND_PROMPT_TEMPLATE` and `DESCRIPTION_PROMPT_TEMPLATE` to alter the AI's personality or output format.
+-   **Feature Flags**: Enable or disable features like color output, safety checks, and more.
 
 ## 🤝 Contributing
 
